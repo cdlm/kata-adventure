@@ -18,7 +18,7 @@ public class AdventureTest {
     }
 
     @Test
-    public void testWelcomeMessage() {
+    public void test_welcomeMessage() {
         assertEquals("You've landed in a strange place...", adventure.situation());
     }
 }
