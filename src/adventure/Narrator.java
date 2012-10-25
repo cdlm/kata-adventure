@@ -3,10 +3,19 @@ package adventure;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Narrator {
+    protected Map<String, CommandFactory> commands;
+
     public Narrator(Adventure adventure) {
+        commands = new TreeMap<String, CommandFactory>();
         // TODO
+    }
+
+    public void registerCommand(String keyword, CommandFactory factory) {
+        commands.put(keyword, factory);
     }
 
     public String react(String commandLine) {
@@ -17,7 +26,12 @@ public class Narrator {
 
     public Command recognizeAction(String commandLine) {
         String[] words = commandLine.split("[ ]+");
-        return new Huh(words);
+        String keyword = words[0];
+        if (commands.containsKey(keyword)) {
+            return commands.get(keyword).make(words);
+        } else {
+            return new Command.Huh(words);
+        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -28,17 +42,5 @@ public class Narrator {
             commandLine = in.readLine();
             System.out.println(narrator.react(commandLine));
         } while (commandLine != null);
-    }
-
-    public static class Huh implements Command {
-        protected String[] words;
-
-        public Huh(String[] words) { this.words = words; }
-
-        public void perform() { /* do nothing */ }
-
-        public String narration() {
-            return "Huh? Your words made no sense.";
-        }
     }
 }
