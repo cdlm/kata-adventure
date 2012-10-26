@@ -1,9 +1,13 @@
 package adventure;
 
 public abstract class Command {
+    protected Adventure adventure;
     protected String[] words;
 
-    public Command(String[] words) { this.words = words; }
+    public Command(Adventure adventure, String[] words) {
+        this.adventure = adventure;
+        this.words = words;
+    }
 
     public abstract String narration();
 
@@ -11,13 +15,13 @@ public abstract class Command {
 
     public static CommandFactory factory() {
         return new CommandFactory() {
-            public Command make(String[] words) { return new Huh(words); }
+            public Command make(Adventure adventure, String[] words) { return new Huh(adventure, words); }
         };
     }
 
     public static class Huh extends Command {
 
-        public Huh(String[] words) { super(words); }
+        public Huh(Adventure adventure, String[] words) { super(adventure, words); }
 
         public String narration() {
             return "Huh? Your words made no sense.";

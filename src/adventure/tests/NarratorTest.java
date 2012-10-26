@@ -1,6 +1,7 @@
 package adventure.tests;
 
 import adventure.Adventure;
+import adventure.Location;
 import adventure.Narrator;
 import adventure.actions.Look;
 import org.junit.Before;
@@ -11,11 +12,12 @@ import static org.junit.matchers.JUnitMatchers.containsString;
 
 public class NarratorTest {
 
-    protected Narrator narrator;
     protected Adventure adventure;
+    protected Narrator narrator;
 
     @Before
     public void setUp() {
+        adventure = new Adventure(new Location("You're in a test lab."));
         narrator = new Narrator(adventure);
     }
 
@@ -30,5 +32,6 @@ public class NarratorTest {
         narrator.registerCommand("look", Look.factory());
         String output = narrator.react("look");
         assertThat(output, containsString("You look around"));
+        assertThat(output, containsString("test lab"));
     }
 }

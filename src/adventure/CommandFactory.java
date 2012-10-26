@@ -1,5 +1,5 @@
 package adventure;
 
 public interface CommandFactory {
-    public Command make(String[] words);
+    public Command make(Adventure adventure, String[] words);
 }

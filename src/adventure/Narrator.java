@@ -8,8 +8,10 @@ import java.util.TreeMap;
 
 public class Narrator {
     protected Map<String, CommandFactory> commands;
+    protected Adventure adventure;
 
     public Narrator(Adventure adventure) {
+        this.adventure = adventure;
         commands = new TreeMap<String, CommandFactory>();
         // TODO
     }
@@ -28,14 +30,14 @@ public class Narrator {
         String[] words = commandLine.split("[ ]+");
         String keyword = words[0];
         if (commands.containsKey(keyword)) {
-            return commands.get(keyword).make(words);
+            return commands.get(keyword).make(adventure, words);
         } else {
-            return new Command.Huh(words);
+            return new Command.Huh(adventure, words);
         }
     }
 
     public static void main(String[] args) throws IOException {
-        Narrator narrator = new Narrator(new Adventure(new Location("foo")));
+        Narrator narrator = new Narrator(new Adventure(new Location("A nondescript place.")));
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String commandLine;
         do {
