@@ -1,5 +1,8 @@
 package adventure;
 
+/**
+ * A place in the game's world.
+ */
 public class Location {
     protected String description;
 

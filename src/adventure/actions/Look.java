@@ -4,6 +4,10 @@ import adventure.Adventure;
 import adventure.Command;
 import adventure.CommandFactory;
 
+/**
+ * The Look command makes the hero look around herself. It has no effect on the adventure, so the player can invoke it
+ * as many times as necessary.
+ */
 public class Look extends Command {
     public Look(Adventure adventure, String[] words) { super(adventure, words); }
 
