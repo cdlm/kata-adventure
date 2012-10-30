@@ -15,45 +15,45 @@ import java.util.TreeMap;
  * is usually a verb. The keyword is used by the narrator to determine how to interpret the rest of the command.
  * <p/>
  * A freshly created Narrator instance does will not recognise any commands; the game initialization code must
- * {@linkplain #registerCommand(String, CommandFactory) register} all the commands that the narrator should recognize.
+ * {@linkplain #registerCommand(String, Command) register} all the commands that the narrator should recognize.
  *
  * @see Command
  * @see Adventure
  */
 public class Narrator {
-    protected Map<String, CommandFactory> commands;
+    protected Map<String, Command> commands;
     protected Adventure adventure;
 
     /**
-     * @param adventure The Adventure in which to interpret the commands.
+     * @param adventure The Adventure that will be narrated to the player.
      */
     public Narrator(Adventure adventure) {
         this.adventure = adventure;
-        commands = new TreeMap<String, CommandFactory>();
+        commands = new TreeMap<String, Command>();
         // TODO
     }
 
     /**
-     * Registers a keyword to recognize, and associates a Command with it.
+     * Registers a keyword to recognize, associating a {@link Command} with it.
      *
      * @param keyword The command's keyword; if the same keyword is registered again, the new registration overwrites
      *                the previous one.
-     * @param factory
+     * @param command A command object which will be able to recognize subsequent words following the {@code keyword}.
      */
-    public void registerCommand(String keyword, CommandFactory factory) {
-        commands.put(keyword, factory);
+    public void registerCommand(String keyword, Command command) {
+        commands.put(keyword, command);
     }
 
     /**
-     * React to a command line typed by the user.
+     * React to a command line typed by the player.
      *
      * @param commandLine The full command line as typed by the user.
      * @return Text to display to the user as a result of the command.
      */
     public String react(String commandLine) {
-        Command action = this.recognizeAction(commandLine);
-        action.perform();
-        return action.narration();
+        String[] words = commandLine.split("[ ]+");
+        Command command = this.recognizeCommand(words);
+        return command.perform(adventure, words);
     }
 
     /**
@@ -62,13 +62,12 @@ public class Narrator {
      * @param commandLine The command line, as typed by the user, in a single String.
      * @return A {@link Command} instance that matches the keyword typed.
      */
-    public Command recognizeAction(String commandLine) {
-        String[] words = commandLine.split("[ ]+");
+    public Command recognizeCommand(String[] words) {
         String keyword = words[0];
         if (commands.containsKey(keyword)) {
-            return commands.get(keyword).make(adventure, words);
+            return commands.get(keyword);
         } else {
-            return new Command.Huh(adventure, words);
+            return new Command.Huh();
         }
     }
 

@@ -29,7 +29,7 @@ public class NarratorTest {
 
     @Test
     public void test_lookCommand() {
-        narrator.registerCommand("look", Look.factory());
+        narrator.registerCommand("look", new Look());
         String output = narrator.react("look");
         assertThat(output, containsString("You look around"));
         assertThat(output, containsString("test lab"));

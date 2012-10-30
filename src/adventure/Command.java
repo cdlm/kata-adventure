@@ -12,47 +12,26 @@ package adventure;
  * @see Narrator
  */
 public abstract class Command {
-    protected Adventure adventure;
-    protected String[] words;
-
-    public Command(Adventure adventure, String[] words) {
-        this.adventure = adventure;
-        this.words = words;
-    }
-
     /**
-     * Provide a brief description of the results of the command.
+     * Change the world/game state according to the command's specification, returning a narration of what happens as a
+     * result.
      * <p/>
      * All commands should provide consistent narrations, beginning by a concise statement describing what action the
      * hero takes, followed by a more elaborate description of what happens as a result. For the sake of style,
-     * narrations should be written in second-person form, as if the Narrator is relating events to the player/hero.
+     * narrations should be written in second-person form, as if the Narrator is relating events to the player/hero. .
      *
+     * @param adventure The context in which to perform the command.
+     * @param words     Keyword and following words, to be interpreted by each implementor.
      * @return The text that the Narrator will display to the user.
      */
-    public abstract String narration();
-
-    /**
-     * Change the world/game state according to the command's specification.
-     * <p/>
-     * This method provides a default no-op implementation to avoid having to define it in subclasses that don't change
-     * the world.
-     */
-    public void perform() { /* do nothing by default */ }
-
-    public static CommandFactory factory() {
-        return new CommandFactory() {
-            public Command make(Adventure adventure, String[] words) { return new Huh(adventure, words); }
-        };
-    }
+    public abstract String perform(Adventure adventure, String[] words);
 
     /**
      * A dummy command, to use when no other commands match the given keyword (Null Object pattern).
      */
     public static class Huh extends Command {
 
-        public Huh(Adventure adventure, String[] words) { super(adventure, words); }
-
-        public String narration() {
+        public String perform(Adventure adventure, String[] words) {
             return "Huh? Your words made no sense.";
         }
     }
