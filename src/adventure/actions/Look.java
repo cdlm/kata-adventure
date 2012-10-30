@@ -15,7 +15,7 @@ public class Look implements Command {
         text.append(adventure.situation());
         text.append("\n\n");
         for (Way w : adventure.getWays()) {
-            text.append("You see " + w.getDescription() + ".\n");
+            text.append("You see a " + w.getDescription() + ".\n");
         }
         return text.toString();
     }

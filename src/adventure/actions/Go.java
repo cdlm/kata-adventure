@@ -14,13 +14,13 @@ public class Go implements Command {
         List<Way> ways = adventure.getCurrentLocation().findWays(keywords);
         switch (ways.size()) {
             case 0:
-                return "Huh? Which way?";
+                return "Huh? There's no such way.";
             case 1:
                 Way picked = ways.get(0);
                 adventure.setCurrentLocation(picked.traverse());
                 return "You go via the " + picked.getDescription();
             default:
-                return "I'm not sure which way of several you meant.";
+                return "I'm not sure which of several ways you meant.";
         }
     }
 }

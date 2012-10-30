@@ -1,5 +1,8 @@
 package adventure;
 
+import adventure.actions.Go;
+import adventure.actions.Look;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,6 +48,18 @@ public class Narrator {
     }
 
     /**
+     * Registers all basic commands with predefined keywords.
+     *
+     * @return {@code this} for usage fluidity.
+     */
+    public Narrator registerBasicCommands() {
+        registerCommand("look", new Look());
+        registerCommand("go", new Go());
+
+        return this;
+    }
+
+    /**
      * React to a command line typed by the player.
      *
      * @param commandLine The full command line as typed by the user.
@@ -85,13 +100,12 @@ public class Narrator {
     /**
      * A sample Narrator setup, reading commands from the standard input and displaying results to the standard output.
      */
-    public static void main(String[] args) throws IOException {
-        Narrator narrator = new Narrator(new Adventure(new Location("A nondescript place.")));
+    public void runOnConsole() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String commandLine;
         do {
             commandLine = in.readLine();
-            System.out.println(narrator.react(commandLine));
+            System.out.println(this.react(commandLine));
         } while (commandLine != null);
     }
 }
