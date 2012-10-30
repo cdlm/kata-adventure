@@ -18,7 +18,7 @@ import java.util.TreeMap;
  * is usually a verb. The keyword is used by the narrator to determine how to interpret the rest of the command.
  * <p/>
  * A freshly created Narrator instance does will not recognise any commands; the game initialization code must
- * {@linkplain #registerCommand(String, Command) register} all the commands that the narrator should recognize.
+ * {@linkplain #registerCommand(Command) register} all the commands that the narrator should recognize.
  *
  * @see Command
  * @see Adventure
@@ -37,13 +37,28 @@ public class Narrator {
     }
 
     /**
-     * Registers a keyword to recognize, associating a {@link Command} with it.
+     * Registers a {@link Command} to be recognized from its default keyword.
+     * <p/>
+     * If there is a previous command registration with this keyword, it will be overwritten.
      *
-     * @param keyword The command's keyword; if the same keyword is registered again, the new registration overwrites
-     *                the previous one.
-     * @param command A command object which will be able to recognize subsequent words following the {@code keyword}.
+     * @param command The command object which will be able to interpret word sequences beginning with its {@linkplain
+     *                Command#defaultKeyword() default keyword}.
      */
-    public void registerCommand(String keyword, Command command) {
+    public void registerCommand(Command command) {
+        commands.put(command.defaultKeyword(), command);
+    }
+
+    /**
+     * Registers a {@link Command} to recognize, specifying an arbitrary keyword.
+     * <p/>
+     * If there is a previous command registration with this keyword, it will be overwritten.
+     *
+     * @param keyword The keyword used for registering the command, possibly different from the command's {@link
+     *                Command#defaultKeyword() default one}; commands can change behavior depending on which keyword was
+     *                used to invoke them.
+     * @param command A command object which will be able to interpret word sequences beginning with the given keyword.
+     */
+    public void registerCommandAlias(String keyword, Command command) {
         commands.put(keyword, command);
     }
 
@@ -53,9 +68,8 @@ public class Narrator {
      * @return {@code this} for usage fluidity.
      */
     public Narrator registerBasicCommands() {
-        registerCommand("look", new Look());
-        registerCommand("go", new Go());
-
+        registerCommand(new Look());
+        registerCommand(new Go());
         return this;
     }
 
@@ -90,6 +104,10 @@ public class Narrator {
      * A dummy command, for when the narrator does not recognize the given keyword (Null Object pattern).
      */
     public class Huh implements Command {
+
+        public String defaultKeyword() {
+            return null; // Huh is a bit special
+        }
 
         public String invoke(Adventure adventure, String[] words) {
             return "Huh? Your words made no sense.";

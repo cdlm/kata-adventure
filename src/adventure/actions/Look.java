@@ -10,12 +10,15 @@ import adventure.Way;
  */
 public class Look implements Command {
 
+    public String defaultKeyword() { return "look"; }
+
     public String invoke(Adventure adventure, String[] words) {
         StringBuilder text = new StringBuilder("You look around.\n\n");
-        text.append(adventure.situation());
-        text.append("\n\n");
+        text.append(adventure.situation()).append("\n\n");
         for (Way w : adventure.getWays()) {
-            text.append("You see a " + w.getDescription() + ".\n");
+            text.append("You see a ")
+                    .append(w.getDescription())
+                    .append(".\n");
         }
         return text.toString();
     }

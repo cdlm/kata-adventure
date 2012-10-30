@@ -12,6 +12,12 @@ package adventure;
  * @see Narrator
  */
 public interface Command {
+
+    /**
+     * @return The default keyword that the command can interpret.
+     */
+    public String defaultKeyword();
+
     /**
      * Change the world/game state according to the command's specification, returning a narration of what happens as a
      * result.

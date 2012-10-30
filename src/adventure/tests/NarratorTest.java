@@ -27,8 +27,8 @@ public class NarratorTest {
         lab.addWay(new Way("door to the north", office));
         adventure = new Adventure(lab);
         narrator = new Narrator(adventure);
-        narrator.registerCommand("look", new Look());
-        narrator.registerCommand("go", new Go());
+        narrator.registerCommand(new Look());
+        narrator.registerCommand(new Go());
     }
 
     @Test
@@ -53,7 +53,15 @@ public class NarratorTest {
     @Test
     public void test_goViaExistingWay() {
         String output = narrator.react("go north");
-        assertThat(output, containsString("You go via"));
+        assertThat(output, containsString("You go through"));
+        assertSame(adventure.getCurrentLocation(), office);
+    }
+
+    @Test
+    public void test_commandAlias() {
+        narrator.registerCommandAlias("walk", narrator.recognizeCommand("go"));
+        String output = narrator.react("walk north");
+        assertThat(output, containsString("You walk through"));
         assertSame(adventure.getCurrentLocation(), office);
     }
 }
