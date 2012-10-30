@@ -27,11 +27,7 @@ public class Location {
     public List<Way> findWays(String[] keywords) {
         List<Way> found = new LinkedList<Way>();
         for (Way w : ways) {
-            boolean matches = true;
-            for (String kwd : keywords) {
-                matches = matches && w.matches(kwd);
-            }
-            if (matches) {
+            if (w.matches(keywords)) {
                 found.add(w);
             }
         }
