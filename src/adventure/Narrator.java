@@ -1,7 +1,7 @@
 package adventure;
 
-import adventure.actions.Go;
-import adventure.actions.Look;
+import adventure.commands.Go;
+import adventure.commands.Look;
 
 import java.io.BufferedReader;
 import java.io.IOException;

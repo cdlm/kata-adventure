@@ -4,8 +4,8 @@ import adventure.Adventure;
 import adventure.Location;
 import adventure.Narrator;
 import adventure.Way;
-import adventure.actions.Go;
-import adventure.actions.Look;
+import adventure.commands.Go;
+import adventure.commands.Look;
 import org.junit.Before;
 import org.junit.Test;
 

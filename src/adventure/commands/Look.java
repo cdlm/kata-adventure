@@ -1,4 +1,4 @@
-package adventure.actions;
+package adventure.commands;
 
 import adventure.Adventure;
 import adventure.Command;
