@@ -42,7 +42,7 @@ public class Way {
      * Checks if the way's description matches each of the given keywords.
      *
      * @param keywords Keywords to match.
-     * @return
+     * @return {@code true} if the way matches.
      */
     public boolean matches(String[] keywords) {
         boolean matches = true;

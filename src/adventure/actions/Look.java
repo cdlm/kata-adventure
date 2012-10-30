@@ -5,8 +5,11 @@ import adventure.Command;
 import adventure.Way;
 
 /**
- * The Look command makes the hero look around herself. It has no effect on the adventure, so the player can invoke it
+ * The "look" command makes the hero look around herself. It has no effect on the adventure, so the player can invoke it
  * as many times as necessary.
+ *
+ * @see adventure.Location
+ * @see Adventure
  */
 public class Look implements Command {
 
