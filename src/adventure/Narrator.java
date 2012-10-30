@@ -52,30 +52,38 @@ public class Narrator {
      */
     public String react(String commandLine) {
         String[] words = commandLine.split("[ ]+");
-        Command command = this.recognizeCommand(words);
-        return command.perform(adventure, words);
+        String keyword = words[0];
+        Command command = this.recognizeCommand(keyword);
+        return command.invoke(adventure, words);
     }
 
     /**
-     * Analyze a command line and find the Command object to act upon it.
+     * Find the {@link Command} object registered to handle the given {@code keyword}.
      *
-     * @param commandLine The command line, as typed by the user, in a single String.
      * @return A {@link Command} instance that matches the keyword typed.
      */
-    public Command recognizeCommand(String[] words) {
-        String keyword = words[0];
+    public Command recognizeCommand(String keyword) {
         if (commands.containsKey(keyword)) {
             return commands.get(keyword);
         } else {
-            return new Command.Huh();
+            return new Huh();
         }
     }
 
+
+    /**
+     * A dummy command, for when the narrator does not recognize the given keyword (Null Object pattern).
+     */
+    public class Huh implements Command {
+
+        public String invoke(Adventure adventure, String[] words) {
+            return "Huh? Your words made no sense.";
+        }
+    }
+
+
     /**
      * A sample Narrator setup, reading commands from the standard input and displaying results to the standard output.
-     *
-     * @param args
-     * @throws IOException
      */
     public static void main(String[] args) throws IOException {
         Narrator narrator = new Narrator(new Adventure(new Location("A nondescript place.")));
