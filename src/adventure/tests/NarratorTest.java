@@ -27,8 +27,8 @@ public class NarratorTest {
         lab.addWay(new Way("door to the north", office));
         adventure = new Adventure(lab);
         narrator = new Narrator(adventure);
-        narrator.registerCommand(new Look());
-        narrator.registerCommand(new Go());
+        narrator.registerCommand(new Look())
+                .registerCommand(new Go());
     }
 
     @Test

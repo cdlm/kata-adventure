@@ -43,9 +43,11 @@ public class Narrator {
      *
      * @param command The command object which will be able to interpret word sequences beginning with its {@linkplain
      *                Command#defaultKeyword() default keyword}.
+     * @return {@code this} for usage fluidity.
      */
-    public void registerCommand(Command command) {
+    public Narrator registerCommand(Command command) {
         commands.put(command.defaultKeyword(), command);
+        return this;
     }
 
     /**
@@ -57,9 +59,11 @@ public class Narrator {
      *                Command#defaultKeyword() default one}; commands can change behavior depending on which keyword was
      *                used to invoke them.
      * @param command A command object which will be able to interpret word sequences beginning with the given keyword.
+     * @return {@code this} for usage fluidity.
      */
-    public void registerCommandAlias(String keyword, Command command) {
+    public Narrator registerCommandAlias(String keyword, Command command) {
         commands.put(keyword, command);
+        return this;
     }
 
     /**
