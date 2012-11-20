@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="adventure" default="run">
+
+    <dirname property="basedir" file="${ant.file}"/>
+    <property name="output" value="${basedir}/out"/>
+    <property name="sources" value="${basedir}/src/"/>
+
+    <path id="classpath">
+        <pathelement location="${output}"/>
+        <fileset dir="${basedir}/lib" includes="**/*.jar"/>
+    </path>
+
+    <target name="build" description="Compile code">
+        <mkdir dir="${output}"/>
+        <javac srcdir="${sources}" destdir="${output}" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <target name="test" depends="build">
+        <junit fork="yes" haltonfailure="yes">
+            <formatter type="brief" usefile="false" />
+            <classpath refid="classpath"/>
+            <batchtest fork="yes" todir="${output}">
+                <fileset dir="${output}">
+                    <include name="**/*Test.class" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="doc">
+        <javadoc sourcepath="${sources}" destdir="${output}/doc" access="private" linksource="yes">
+            <classpath refid="classpath"/>
+        </javadoc>
+    </target>
+
+    <target name="clean">
+        <delete dir="${output}"/>
+    </target>
+
+    <target name="run" depends="test" description="Build, test, and run the game"/>
+    <target name="all" depends="clean, test, doc" description="Build and test everything, generate docs"/>
+</project>
