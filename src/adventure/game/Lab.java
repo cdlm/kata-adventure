@@ -9,12 +9,12 @@ import java.io.IOException;
 
 public class Lab {
 
-    public Location location;
-    public Location anotherLocation;
+    protected Location location;
+    protected Location anotherLocation;
 
     public Lab() {
-        location = new Location("You're in a test lab.");
-        anotherLocation = new Location("You're in an office.");
+        location = new Location("A test lab", "The place is full of strange experiments.");
+        anotherLocation = new Location("An office", "Stacks of papers cover every available horizontal surface.");
         location.addWay(new Way("door to the north", anotherLocation));
         anotherLocation.addWay(new Way("door", location));
         location.addWay(new Way("loophole", location));
@@ -24,9 +24,9 @@ public class Lab {
         return new Adventure(initialLocation());
     }
 
-    private Location initialLocation() {
-        return location;
-    }
+    public Location initialLocation() { return location; }
+
+    public Location anotherLocation() { return anotherLocation; }
 
     public static void main(String[] args) throws IOException {
         new Narrator(new Lab().makeAdventure())

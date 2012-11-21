@@ -22,8 +22,8 @@ public class NarratorTest {
 
     @Before
     public void setUp() {
-        lab = new Location("You're in a test lab.");
-        office = new Location("You're in an office.");
+        lab = new Location("A test lab");
+        office = new Location("An office");
         lab.addWay(new Way("door to the north", office));
         adventure = new Adventure(lab);
         narrator = new Narrator(adventure);
@@ -45,8 +45,6 @@ public class NarratorTest {
     @Test
     public void test_look() {
         String output = narrator.react("look");
-        assertThat(output, containsString("You look around"));
-        assertThat(output, containsString("test lab"));
         assertThat(output, containsString("door to the north"));
     }
 

@@ -123,9 +123,11 @@ public class Narrator {
      * A sample Narrator setup, reading commands from the standard input and displaying results to the standard output.
      */
     public void runOnConsole() throws IOException {
+        String prompt = " > ";
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String commandLine;
         do {
+            System.out.print(adventure.situation() + prompt);
             commandLine = in.readLine();
             System.out.println(this.react(commandLine));
         } while (commandLine != null);

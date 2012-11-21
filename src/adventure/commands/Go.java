@@ -28,13 +28,13 @@ public class Go implements Command {
         List<Way> ways = adventure.getCurrentLocation().findWays(terms);
         switch (ways.size()) {
             case 0:
-                return "Huh? There's no such way.";
+                return "Huh? There's no such way.\n";
             case 1:
                 Way picked = ways.get(0);
                 adventure.setCurrentLocation(picked.traverse());
-                return "You " + keywordUsed + " through the " + picked.getDescription();
+                return "You " + keywordUsed + " through the " + picked.getDescription() + "...\n";
             default:
-                return "I'm not sure which of several ways you meant.";
+                return "I'm not sure which of several ways you meant.\n";
         }
     }
 }

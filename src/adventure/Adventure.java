@@ -22,10 +22,11 @@ public class Adventure {
     }
 
     /**
-     * @return a description of the situation the hero is in: place, belongings, etc.
+     * @return a short description of the situation the hero is in: place, readily perceptible
+     *         things, tools at hand, etc.
      */
     public String situation() {
-        return currentLocation.description();
+        return currentLocation.name();
     }
 
     /**

@@ -5,20 +5,23 @@ import adventure.Location;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.matchers.JUnitMatchers.containsString;
 
 public class AdventureTest {
 
     protected Adventure adventure;
+    protected String title = "A strange place";
+    protected String description = "Strange indeed; red and green lights flicker in the fog.";
 
     @Before
     public void setUp() {
-        Location strangePlace = new Location("You've landed in a strange place...");
+        Location strangePlace = new Location(title, description);
         adventure = new Adventure(strangePlace);
     }
 
     @Test
     public void test_welcomeMessage() {
-        assertEquals("You've landed in a strange place...", adventure.situation());
+        assertThat(adventure.situation(), containsString(title));
     }
 }

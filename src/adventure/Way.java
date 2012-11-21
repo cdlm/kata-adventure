@@ -1,8 +1,8 @@
 package adventure;
 
 /**
- * A one-way passage between two locations. To make a passage that can be {@link #traverse() traversed} in both
- * directions, add a {@code Way} forth and another one back.
+ * A one-way passage between two locations. To make a passage that can be {@link #traverse()
+ * traversed} in both directions, add a {@code Way} forth and another one back.
  *
  * @see Location
  */

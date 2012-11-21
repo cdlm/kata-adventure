@@ -21,18 +21,18 @@ public class LocationTest {
 
     @Test
     public void test_description() {
-        assertThat(lab.location.description(), containsString("test lab"));
+        assertThat(lab.initialLocation().name(), containsString("test lab"));
     }
 
     @Test
     public void test_way() {
-        List<Way> ways = lab.location.findWays(new String[]{"door"});
-        assertEquals(ways.size(), 1);
-        assertSame(ways.get(0).traverse(), lab.anotherLocation);
+        List<Way> ways = lab.initialLocation().findWays(new String[]{"door"});
+        assertTrue("there is at least one way out", ways.size() >= 1);
+        assertSame(ways.get(0).traverse(), lab.anotherLocation());
     }
 
     @Test
     public void test_wrongWay() {
-        assertTrue(lab.location.findWays(new String[]{"incorrect"}).isEmpty());
+        assertTrue(lab.initialLocation().findWays(new String[]{"incorrect"}).isEmpty());
     }
 }

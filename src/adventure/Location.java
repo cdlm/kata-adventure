@@ -9,13 +9,19 @@ import java.util.List;
  * @see Way
  */
 public class Location {
+    protected String name;
     protected String description;
     private List<Way> ways;
 
-    public Location(String description) {
+    public Location(String name) { this(name, ""); }
+
+    public Location(String name, String description) {
+        this.name = name;
         this.description = description;
         ways = new LinkedList<Way>();
     }
+
+    public String name() { return name; }
 
     public String description() { return description; }
 

@@ -16,8 +16,9 @@ public class Look implements Command {
     public String defaultKeyword() { return "look"; }
 
     public String invoke(Adventure adventure, String[] words) {
-        StringBuilder text = new StringBuilder("You look around.\n\n");
-        text.append(adventure.situation()).append("\n\n");
+        StringBuilder text = new StringBuilder();
+        text.append(adventure.getCurrentLocation().description())
+                .append("\n\n");
         for (Way w : adventure.getWays()) {
             text.append("You see a ")
                     .append(w.getDescription())
