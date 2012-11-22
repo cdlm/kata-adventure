@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Adventure {
     protected Location currentLocation;
+    protected boolean finished;
 
     /**
      * @param startingPoint The initial {@link Location} in this adventure
@@ -40,4 +41,6 @@ public class Adventure {
 
     public List<Way> getWays() { return currentLocation.getWays(); }
 
+    public void beFinished() { finished = true; }
+    public boolean isFinished() { return finished; }
 }

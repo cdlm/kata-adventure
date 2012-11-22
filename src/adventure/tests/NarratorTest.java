@@ -4,13 +4,10 @@ import adventure.Adventure;
 import adventure.Location;
 import adventure.Narrator;
 import adventure.Way;
-import adventure.commands.Go;
-import adventure.commands.Look;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.junit.matchers.JUnitMatchers.containsString;
 
 public class NarratorTest {
@@ -26,9 +23,7 @@ public class NarratorTest {
         office = new Location("An office");
         lab.addWay(new Way("door to the north", office));
         adventure = new Adventure(lab);
-        narrator = new Narrator(adventure);
-        narrator.registerCommand(new Look())
-                .registerCommand(new Go());
+        narrator = new Narrator(adventure).registerBasicCommands();
     }
 
     @Test
@@ -40,6 +35,18 @@ public class NarratorTest {
     public void test_incorrectCommand() {
         String output = narrator.react("illegal input");
         assertThat(output, containsString("Huh"));
+    }
+
+    @Test
+    public void test_startsWithSpaces() {
+        String output = narrator.react("  go      north");
+        assertThat(output, containsString("door"));
+    }
+
+    @Test
+    public void test_capitalization() {
+        String output = narrator.react("Go NORTH");
+        assertThat(output, containsString("door"));
     }
 
     @Test
@@ -57,9 +64,16 @@ public class NarratorTest {
 
     @Test
     public void test_commandAlias() {
-        narrator.registerCommandAlias("walk", narrator.recognizeCommand("go"));
-        String output = narrator.react("walk north");
-        assertThat(output, containsString("You walk through"));
+        narrator.registerCommandAlias("tiptoe", narrator.recognizeCommand("go"));
+        String output = narrator.react("tiptoe north");
+        assertThat(output, containsString("You tiptoe through"));
         assertSame(adventure.getCurrentLocation(), office);
+    }
+
+    @Test
+    public void test_quit() {
+        String output = narrator.react("quit");
+        assertThat(output, containsString("bye"));
+        assertTrue(adventure.isFinished());
     }
 }

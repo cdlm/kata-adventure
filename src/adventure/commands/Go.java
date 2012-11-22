@@ -1,7 +1,6 @@
 package adventure.commands;
 
 import adventure.Adventure;
-import adventure.Command;
 import adventure.Way;
 
 import java.util.Arrays;
@@ -18,9 +17,12 @@ import java.util.List;
  * @see adventure.Location
  * @see Way
  */
-public class Go implements Command {
+public class Go extends KeywordCommand {
 
-    public String defaultKeyword() { return "go"; }
+    public Go() {
+        super();
+        keywords.add("go");
+    }
 
     public String invoke(Adventure adventure, String[] words) {
         String keywordUsed = words[0];

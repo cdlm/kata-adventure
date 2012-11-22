@@ -2,6 +2,7 @@ package adventure;
 
 import adventure.commands.Go;
 import adventure.commands.Look;
+import adventure.commands.Quit;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,29 +38,16 @@ public class Narrator {
     }
 
     /**
-     * Registers a {@link Command} to be recognized from its default keyword.
+     * Registers a {@link Command} to recognize for the given keyword.
      * <p/>
      * If there is a previous command registration with this keyword, it will be overwritten.
      *
-     * @param command The command object which will be able to interpret word sequences beginning with its {@linkplain
-     *                Command#defaultKeyword() default keyword}.
+     * @param keyword The keyword used for registering the command, possibly one of many; commands
+     *                can change behavior depending on which keyword was used to invoke them.
+     * @param command A command object which will be able to interpret word sequences beginning with
+     *                the given keyword.
      * @return {@code this} for usage fluidity.
-     */
-    public Narrator registerCommand(Command command) {
-        commands.put(command.defaultKeyword(), command);
-        return this;
-    }
-
-    /**
-     * Registers a {@link Command} to recognize, specifying an arbitrary keyword.
-     * <p/>
-     * If there is a previous command registration with this keyword, it will be overwritten.
-     *
-     * @param keyword The keyword used for registering the command, possibly different from the command's {@link
-     *                Command#defaultKeyword() default one}; commands can change behavior depending on which keyword was
-     *                used to invoke them.
-     * @param command A command object which will be able to interpret word sequences beginning with the given keyword.
-     * @return {@code this} for usage fluidity.
+     * @see Command#invoke(Adventure, String[])
      */
     public Narrator registerCommandAlias(String keyword, Command command) {
         commands.put(keyword, command);
@@ -67,13 +55,14 @@ public class Narrator {
     }
 
     /**
-     * Registers all basic commands with predefined keywords.
+     * Registers all basic commands.
      *
      * @return {@code this} for usage fluidity.
      */
     public Narrator registerBasicCommands() {
-        registerCommand(new Look());
-        registerCommand(new Go());
+        new Quit().registerTo(this);
+        new Look().registerTo(this);
+        new Go().registerTo(this);
         return this;
     }
 
@@ -84,7 +73,7 @@ public class Narrator {
      * @return Text to display to the user as a result of the command.
      */
     public String react(String commandLine) {
-        String[] words = commandLine.split("[ ]+");
+        String[] words = commandLine.toLowerCase().trim().split("[ ]+");
         String keyword = words[0];
         Command command = this.recognizeCommand(keyword);
         return command.invoke(adventure, words);
@@ -108,11 +97,6 @@ public class Narrator {
      * A dummy command, for when the narrator does not recognize the given keyword (Null Object pattern).
      */
     public class Huh implements Command {
-
-        public String defaultKeyword() {
-            return null; // Huh is a bit special
-        }
-
         public String invoke(Adventure adventure, String[] words) {
             return "Huh? Your words made no sense.";
         }
@@ -125,11 +109,13 @@ public class Narrator {
     public void runOnConsole() throws IOException {
         String prompt = " > ";
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        String commandLine;
         do {
             System.out.print(adventure.situation() + prompt);
-            commandLine = in.readLine();
+            String commandLine = in.readLine();
+            if (commandLine == null) {
+                commandLine = Quit.ABORT;
+            }
             System.out.println(this.react(commandLine));
-        } while (commandLine != null);
+        } while (!adventure.isFinished());
     }
 }

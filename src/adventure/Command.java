@@ -9,15 +9,13 @@ package adventure;
  * Commands are performed from the point of view of the hero, i.e. in the context of an {@link
  * Adventure} instance, accessing its current location, etc. Performing a command can (but doesn't
  * have to) change the state of the game world.
+ * <p/>
+ * For a command to be available to the player, it must be {@link Narrator#registerCommandAlias(String, Command)
+ * registered to the narrator} with at least one keyword.
  *
  * @see Narrator
  */
 public interface Command {
-
-    /**
-     * @return The default keyword that the command can interpret.
-     */
-    public String defaultKeyword();
 
     /**
      * Change the world/game state according to the command's specification, returning a narration

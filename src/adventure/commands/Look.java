@@ -1,7 +1,6 @@
 package adventure.commands;
 
 import adventure.Adventure;
-import adventure.Command;
 import adventure.Way;
 
 /**
@@ -11,9 +10,12 @@ import adventure.Way;
  * @see adventure.Location
  * @see Adventure
  */
-public class Look implements Command {
+public class Look extends KeywordCommand {
 
-    public String defaultKeyword() { return "look"; }
+    public Look() {
+        super();
+        keywords.add("look");
+    }
 
     public String invoke(Adventure adventure, String[] words) {
         StringBuilder text = new StringBuilder();
