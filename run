@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function usage() {
+    echo "Usage: $0 [Foo]"
+    echo "  Convenience wrapper around java -cp ... adventure.game.Foo"
+    exit 1
+}
+
+game="${1:-Lab}"
+case "${game}" in
+    -*)
+        usage ;;
+    *)
+        exec java -classpath out adventure.game."${game}" ;;
+esac
