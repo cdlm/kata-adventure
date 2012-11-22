@@ -7,12 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * The "go" command is to make the hero take a {@link Way} out of the current {@link adventure.Location}, to another
- * one.
+ * The "go" command is to make the hero take a {@link Way} out of the current {@link
+ * adventure.Location}, to another one.
  * <p/>
- * Since each location can have several ways departing from it, the player needs to select which one to take by giving
- * terms after the command keyword. Only locations whose description contains all the terms will be considered. If there
- * is only one way out, then no terms need be given.
+ * Since each location can have several ways departing from it, the player needs to select which one
+ * to take by giving terms after the command keyword. Only locations whose description contains all
+ * the terms will be considered. If there is only one way out, then no terms need be given.
  *
  * @see adventure.Location
  * @see Way

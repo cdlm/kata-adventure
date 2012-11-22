@@ -24,7 +24,7 @@ public interface Command {
      * All commands should provide consistent narrations, beginning by a concise statement
      * describing what action the hero takes, followed by a more elaborate description of what
      * happens as a result. For the sake of style, narrations should be written in second-person
-     * form, as if the Narrator is relating events to the player/hero. .
+     * form, as if the Narrator is relating events to the player/hero.
      *
      * @param adventure The context in which to invoke the command.
      * @param words     Keyword and following words, to be interpreted by each implementor.

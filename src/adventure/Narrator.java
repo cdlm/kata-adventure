@@ -11,15 +11,18 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * The Narrator is the interface between the user/player and the rest of the game. It works as a simple command-like
- * interpreter, waiting for a command to be typed, describing what happens then to the user, and so on.
+ * The Narrator is the interface between the user/player and the rest of the game. It works as a
+ * simple command-like interpreter, waiting for a command to be typed, describing what happens then
+ * to the user, and so on.
  * <p/>
- * To the user/player, commands are simple English-like clauses; technically, they are sequences of alphabetic words
- * separated by spaces and terminated by a newline character. The first word of a command is its <em>keyword</em>, and
- * is usually a verb. The keyword is used by the narrator to determine how to interpret the rest of the command.
+ * To the user/player, commands are simple English-like clauses; technically, they are sequences of
+ * alphabetic words separated by spaces and terminated by a newline character. The first word of a
+ * command is its <em>keyword</em>, and is usually a verb. The keyword is used by the narrator to
+ * determine how to interpret the rest of the command.
  * <p/>
- * A freshly created Narrator instance does will not recognise any commands; the game initialization code must
- * {@linkplain #registerCommand(Command) register} all the commands that the narrator should recognize.
+ * A freshly created Narrator instance does not recognise any commands; the game initialization code
+ * must {@linkplain #registerCommandAlias(String, Command) register} all the commands that the
+ * narrator should recognize.
  *
  * @see Command
  * @see Adventure
@@ -94,7 +97,8 @@ public class Narrator {
 
 
     /**
-     * A dummy command, for when the narrator does not recognize the given keyword (Null Object pattern).
+     * A dummy command, for when the narrator does not recognize the given keyword (Null Object
+     * pattern).
      */
     public class Huh implements Command {
         public String invoke(Adventure adventure, String[] words) {
@@ -104,7 +108,8 @@ public class Narrator {
 
 
     /**
-     * A sample Narrator setup, reading commands from the standard input and displaying results to the standard output.
+     * A sample Narrator setup, reading commands from the standard input and displaying results to
+     * the standard output.
      */
     public void runOnConsole() throws IOException {
         String prompt = " > ";
