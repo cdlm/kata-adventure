@@ -10,10 +10,12 @@ import java.util.List;
  */
 public class Location extends Describable {
     private List<Way> ways;
+    private List<Artifact> artifacts;
 
     public Location(String name) {
         super(name);
         ways = new LinkedList<Way>();
+        artifacts = new LinkedList<Artifact>();
     }
 
     public void addWay(Way newWay) {
@@ -32,4 +34,10 @@ public class Location extends Describable {
     }
 
     public List<Way> getWays() { return ways; }
+
+    public void addArtifact(Artifact newArtifact) {
+        artifacts.add(newArtifact);
+    }
+
+    public List<Artifact> getArtifacts() { return artifacts; }
 }

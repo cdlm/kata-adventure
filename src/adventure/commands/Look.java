@@ -1,6 +1,7 @@
 package adventure.commands;
 
 import adventure.Adventure;
+import adventure.Artifact;
 import adventure.Way;
 
 /**
@@ -21,11 +22,24 @@ public class Look extends KeywordCommand {
         StringBuilder text = new StringBuilder();
         text.append(adventure.getCurrentLocation().description())
                 .append("\n\n");
+        describeArtifacts(adventure, text);
+        describeWays(adventure, text);
+        return text.toString();
+    }
+
+    protected void describeArtifacts(Adventure adventure, StringBuilder text) {
+        for (Artifact a : adventure.getArtifacts()) {
+            text.append("You see a ")
+                    .append(a.name())
+                    .append(".\n");
+        }
+    }
+
+    protected void describeWays(Adventure adventure, StringBuilder text) {
         for (Way w : adventure.getWays()) {
             text.append("You see a ")
                     .append(w.name())
                     .append(".\n");
         }
-        return text.toString();
     }
 }

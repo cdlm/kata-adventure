@@ -40,6 +40,8 @@ public class Adventure {
         currentLocation = newLocation;
     }
 
+    public List<Artifact> getArtifacts() { return currentLocation.getArtifacts(); }
+
     public List<Way> getWays() { return currentLocation.getWays(); }
 
     public void beFinished() { finished = true; }
