@@ -16,7 +16,9 @@ public class AdventureTest {
 
     @Before
     public void setUp() {
-        Location strangePlace = new Location(title, description);
+        Location strangePlace = new Location(title);
+        strangePlace.setDescription(description);
+
         adventure = new Adventure(strangePlace);
     }
 

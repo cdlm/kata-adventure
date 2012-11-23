@@ -34,7 +34,7 @@ public class Go extends KeywordCommand {
             case 1:
                 Way picked = ways.get(0);
                 adventure.setCurrentLocation(picked.traverse());
-                return "You " + keywordUsed + " through the " + picked.getDescription() + "...\n";
+                return "You " + keywordUsed + " through the " + picked.name() + "...\n";
             default:
                 return "I'm not sure which of several ways you meant.\n";
         }

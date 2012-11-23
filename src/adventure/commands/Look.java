@@ -23,7 +23,7 @@ public class Look extends KeywordCommand {
                 .append("\n\n");
         for (Way w : adventure.getWays()) {
             text.append("You see a ")
-                    .append(w.getDescription())
+                    .append(w.name())
                     .append(".\n");
         }
         return text.toString();

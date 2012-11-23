@@ -13,8 +13,12 @@ public class Lab {
     protected Location anotherLocation;
 
     public Lab() {
-        location = new Location("A test lab", "The place is full of strange experiments.");
-        anotherLocation = new Location("An office", "Stacks of papers cover every available horizontal surface.");
+        location = new Location("A test lab");
+        location.setDescription("The place is full of strange experiments.");
+
+        anotherLocation = new Location("An office");
+        anotherLocation.setDescription("Stacks of papers cover every available horizontal surface.");
+
         location.addWay(new Way("door to the north", anotherLocation));
         anotherLocation.addWay(new Way("door", location));
         location.addWay(new Way("loophole", location));

@@ -8,22 +8,13 @@ import java.util.List;
  *
  * @see Way
  */
-public class Location {
-    protected String name;
-    protected String description;
+public class Location extends Describable {
     private List<Way> ways;
 
-    public Location(String name) { this(name, ""); }
-
-    public Location(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public Location(String name) {
+        super(name);
         ways = new LinkedList<Way>();
     }
-
-    public String name() { return name; }
-
-    public String description() { return description; }
 
     public void addWay(Way newWay) {
         newWay.setProvenance(this);

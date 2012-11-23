@@ -6,17 +6,16 @@ package adventure;
  *
  * @see Location
  */
-public class Way {
-    protected String description;
+public class Way extends Describable {
     protected Location provenance;
     protected Location destination;
 
     /**
-     * @param description A concise description of the passage, e.g. "a door to the north"
+     * @param name        A concise description of the passage, e.g. "a door to the north"
      * @param destination The {@link Location} to which the way leads.
      */
-    public Way(String description, Location destination) {
-        this.description = description;
+    public Way(String name, Location destination) {
+        super(name);
         this.destination = destination;
     }
 
@@ -47,10 +46,8 @@ public class Way {
     public boolean matches(String[] keywords) {
         boolean matches = true;
         for (String kwd : keywords) {
-            matches = matches && description.contains(kwd);
+            matches = matches && (name.contains(kwd) || description.contains(kwd));
         }
         return matches;
     }
-
-    public String getDescription() { return description; }
 }
