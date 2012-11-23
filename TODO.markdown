@@ -9,7 +9,7 @@
         - treasure chest
         - backpack
     - obstacles
-        - doors
+        - doors (hide a way)
     - enemies
 
 - better interaction

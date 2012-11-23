@@ -10,8 +10,8 @@ package adventure;
  * Adventure} instance, accessing its current location, etc. Performing a command can (but doesn't
  * have to) change the state of the game world.
  * <p/>
- * For a command to be available to the player, it must be {@link Narrator#registerCommandAlias(String, Command)
- * registered to the narrator} with at least one keyword.
+ * For a command to be available to the player, it must be {@link Narrator#registerCommandAlias(String,
+ * Command) registered to the narrator} with at least one keyword.
  *
  * @see Narrator
  */

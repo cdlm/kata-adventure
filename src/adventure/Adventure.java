@@ -43,5 +43,6 @@ public class Adventure {
     public List<Way> getWays() { return currentLocation.getWays(); }
 
     public void beFinished() { finished = true; }
+
     public boolean isFinished() { return finished; }
 }
