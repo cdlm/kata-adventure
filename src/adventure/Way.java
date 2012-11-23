@@ -36,18 +36,4 @@ public class Way extends Describable {
     public Location traverse() {
         return destination;
     }
-
-    /**
-     * Checks if the way's description matches each of the given keywords.
-     *
-     * @param keywords Keywords to match.
-     * @return {@code true} if the way matches.
-     */
-    public boolean matches(String[] keywords) {
-        boolean matches = true;
-        for (String kwd : keywords) {
-            matches = matches && (name.contains(kwd) || description.contains(kwd));
-        }
-        return matches;
-    }
 }

@@ -25,4 +25,18 @@ public abstract class Describable {
         return desc.toString();
     }
 
+    /**
+     * Checks if the name and description match all of the given keywords.
+     *
+     * @param keywords Keywords to match.
+     * @return {@code true} if the way matches.
+     */
+    public boolean matches(String[] keywords) {
+        for (String kwd : keywords) {
+            if (!(name.contains(kwd) || description.contains(kwd))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
