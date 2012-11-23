@@ -7,8 +7,9 @@ import adventure.Narrator;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
 import static org.junit.matchers.JUnitMatchers.hasItem;
 
 public class ArtifactTest {
@@ -33,8 +34,8 @@ public class ArtifactTest {
     }
 
     @Test
-    public void test_seeKey() {
-        String output = narrator.react("look");
-        assertThat(output, containsString("golden key"));
+    public void test_matchesKey() {
+        List<Artifact> artifacts = location.findArtifacts(new String[]{"key"});
+        assertThat(artifacts, hasItem(key));
     }
 }

@@ -40,4 +40,14 @@ public class Location extends Describable {
     }
 
     public List<Artifact> getArtifacts() { return artifacts; }
+
+    public List<Artifact> findArtifacts(String[] keywords) {
+        List<Artifact> found = new LinkedList<Artifact>();
+        for (Artifact a : artifacts) {
+            if (a.matches(keywords)) {
+                found.add(a);
+            }
+        }
+        return found;
+    }
 }
