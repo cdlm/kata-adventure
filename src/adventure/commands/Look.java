@@ -18,7 +18,7 @@ public class Look extends KeywordCommand {
         keywords.add("look");
     }
 
-    public String invoke(Adventure adventure, String[] words) {
+    public String invoke(Adventure adventure, String keyword, String[] terms) {
         StringBuilder text = new StringBuilder();
         text.append(adventure.currentLocation().description())
                 .append("\n\n");

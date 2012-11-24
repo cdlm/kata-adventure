@@ -3,7 +3,6 @@ package adventure.commands;
 import adventure.Adventure;
 import adventure.Way;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,17 +23,15 @@ public class Go extends KeywordCommand {
         keywords.add("go");
     }
 
-    public String invoke(Adventure adventure, String[] words) {
-        String keywordUsed = words[0];
-        String[] terms = Arrays.copyOfRange(words, 1, words.length);
+    public String invoke(Adventure adventure, String keyword, String[] terms) {
         List<Way> ways = adventure.currentLocation().findWays(terms);
         switch (ways.size()) {
             case 0:
                 return "Huh? There's no such way.\n";
             case 1:
                 Way picked = ways.get(0);
-                return "You " + keywordUsed + " through the " + picked.name() + "...\n";
                 adventure.changeLocation(picked.traverse());
+                return "You " + keyword + " through the " + picked.name() + "...\n";
             default:
                 return "I'm not sure which of several ways you meant.\n";
         }

@@ -13,9 +13,9 @@ public class Quit extends KeywordCommand {
     }
 
     @Override
-    public String invoke(Adventure adventure, String[] words) {
+    public String invoke(Adventure adventure, String keyword, String[] terms) {
         adventure.beFinished();
-        if (words[0].equals(ABORT)) {
+        if (keyword.equals(ABORT)) {
             return "";
         } else {
             return "OK, bye. See you soon!";

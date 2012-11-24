@@ -7,6 +7,7 @@ import adventure.commands.Quit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -50,7 +51,7 @@ public class Narrator {
      * @param command A command object which will be able to interpret word sequences beginning with
      *                the given keyword.
      * @return {@code this} for usage fluidity.
-     * @see Command#invoke(Adventure, String[])
+     * @see Command#invoke(Adventure, String, String[])
      */
     public Narrator registerCommandAlias(String keyword, Command command) {
         commands.put(keyword, command);
@@ -78,8 +79,9 @@ public class Narrator {
     public String react(String commandLine) {
         String[] words = commandLine.toLowerCase().trim().split("[ ]+");
         String keyword = words[0];
+        String[] rest = Arrays.copyOfRange(words, 1, words.length);
         Command command = this.recognizeCommand(keyword);
-        return command.invoke(adventure, words);
+        return command.invoke(adventure, keyword, rest);
     }
 
     /**
@@ -101,7 +103,7 @@ public class Narrator {
      * pattern).
      */
     public class Huh implements Command {
-        public String invoke(Adventure adventure, String[] words) {
+        public String invoke(Adventure adventure, String keyword, String[] terms) {
             return "Huh? Your words made no sense.";
         }
     }

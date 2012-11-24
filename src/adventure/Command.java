@@ -27,9 +27,10 @@ public interface Command {
      * form, as if the Narrator is relating events to the player/hero.
      *
      * @param adventure The context in which to invoke the command.
-     * @param words     Keyword and following words, to be interpreted by each implementor.
+     * @param keyword   The keyword with which the command was identified.
+     * @param terms     The rest of the words from the player command.
      * @return The text that the Narrator will display to the user.
      */
-    public String invoke(Adventure adventure, String[] words);
+    public String invoke(Adventure adventure, String keyword, String[] terms);
 
 }
