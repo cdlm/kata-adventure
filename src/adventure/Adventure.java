@@ -1,5 +1,6 @@
 package adventure;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,12 +16,14 @@ import java.util.List;
 public class Adventure {
     protected Location currentLocation;
     protected boolean finished;
+    private List<Artifact> inventory;
 
     /**
      * @param startingPoint The initial {@link Location} in this adventure
      */
     public Adventure(Location startingPoint) {
         currentLocation = startingPoint;
+        inventory = new LinkedList<Artifact>();
     }
 
     /**
@@ -43,6 +46,14 @@ public class Adventure {
     public List<Way> availableWays() { return currentLocation.getWays(); }
 
     public List<Artifact> environmentArtifacts() { return currentLocation.availableArtifacts(); }
+
+    public List<Artifact> inventory() { return inventory; }
+
+    public void addToInventory(Artifact picked) { inventory.add(picked); }
+
+    public boolean isArtifactAvailable(Artifact artifact) {
+        return inventory.contains(artifact) || environmentArtifacts().contains(artifact);
+    }
 
     public void beFinished() { finished = true; }
 

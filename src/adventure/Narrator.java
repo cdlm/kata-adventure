@@ -3,6 +3,7 @@ package adventure;
 import adventure.commands.Go;
 import adventure.commands.Look;
 import adventure.commands.Quit;
+import adventure.commands.Take;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,6 +68,7 @@ public class Narrator {
         new Quit().registerTo(this);
         new Look().registerTo(this);
         new Go().registerTo(this);
+        new Take().registerTo(this);
         return this;
     }
 

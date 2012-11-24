@@ -39,6 +39,7 @@ public class Location extends Describable {
 
     public void addArtifact(Artifact newArtifact) { artifacts.add(newArtifact); }
 
+    public void removeArtifact(Artifact artifact) { artifacts.remove(artifact); }
 
     public List<Artifact> findArtifacts(String[] keywords) {
         List<Artifact> found = new LinkedList<Artifact>();

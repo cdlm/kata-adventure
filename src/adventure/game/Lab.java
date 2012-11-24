@@ -1,9 +1,6 @@
 package adventure.game;
 
-import adventure.Adventure;
-import adventure.Location;
-import adventure.Narrator;
-import adventure.Way;
+import adventure.*;
 
 import java.io.IOException;
 
