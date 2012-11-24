@@ -27,14 +27,14 @@ public class Go extends KeywordCommand {
     public String invoke(Adventure adventure, String[] words) {
         String keywordUsed = words[0];
         String[] terms = Arrays.copyOfRange(words, 1, words.length);
-        List<Way> ways = adventure.getCurrentLocation().findWays(terms);
+        List<Way> ways = adventure.currentLocation().findWays(terms);
         switch (ways.size()) {
             case 0:
                 return "Huh? There's no such way.\n";
             case 1:
                 Way picked = ways.get(0);
-                adventure.setCurrentLocation(picked.traverse());
                 return "You " + keywordUsed + " through the " + picked.name() + "...\n";
+                adventure.changeLocation(picked.traverse());
             default:
                 return "I'm not sure which of several ways you meant.\n";
         }

@@ -30,7 +30,7 @@ public class ArtifactTest {
 
     @Test
     public void test_addKey() {
-        assertThat(location.getArtifacts(), hasItem(key));
+        assertThat(location.availableArtifacts(), hasItem(key));
     }
 
     @Test

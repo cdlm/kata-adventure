@@ -34,15 +34,15 @@ public class Adventure {
     /**
      * @return the {@link Location} where the hero currently is.
      */
-    public Location getCurrentLocation() { return currentLocation; }
+    public Location currentLocation() { return currentLocation; }
 
-    public void setCurrentLocation(Location newLocation) {
+    public void changeLocation(Location newLocation) {
         currentLocation = newLocation;
     }
 
-    public List<Artifact> getArtifacts() { return currentLocation.getArtifacts(); }
+    public List<Way> availableWays() { return currentLocation.getWays(); }
 
-    public List<Way> getWays() { return currentLocation.getWays(); }
+    public List<Artifact> environmentArtifacts() { return currentLocation.availableArtifacts(); }
 
     public void beFinished() { finished = true; }
 

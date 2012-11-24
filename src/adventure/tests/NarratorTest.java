@@ -28,7 +28,7 @@ public class NarratorTest {
 
     @Test
     public void test_initialLocation() {
-        assertSame(adventure.getCurrentLocation(), lab);
+        assertSame(adventure.currentLocation(), lab);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class NarratorTest {
     public void test_goViaExistingWay() {
         String output = narrator.react("go north");
         assertThat(output, containsString("You go through"));
-        assertSame(adventure.getCurrentLocation(), office);
+        assertSame(adventure.currentLocation(), office);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class NarratorTest {
         narrator.registerCommandAlias("tiptoe", narrator.recognizeCommand("go"));
         String output = narrator.react("tiptoe north");
         assertThat(output, containsString("You tiptoe through"));
-        assertSame(adventure.getCurrentLocation(), office);
+        assertSame(adventure.currentLocation(), office);
     }
 
     @Test

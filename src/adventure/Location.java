@@ -18,6 +18,8 @@ public class Location extends Describable {
         artifacts = new LinkedList<Artifact>();
     }
 
+    public List<Way> getWays() { return ways; }
+
     public void addWay(Way newWay) {
         newWay.setProvenance(this);
         ways.add(newWay);
@@ -33,13 +35,10 @@ public class Location extends Describable {
         return found;
     }
 
-    public List<Way> getWays() { return ways; }
+    public List<Artifact> availableArtifacts() { return artifacts; }
 
-    public void addArtifact(Artifact newArtifact) {
-        artifacts.add(newArtifact);
-    }
+    public void addArtifact(Artifact newArtifact) { artifacts.add(newArtifact); }
 
-    public List<Artifact> getArtifacts() { return artifacts; }
 
     public List<Artifact> findArtifacts(String[] keywords) {
         List<Artifact> found = new LinkedList<Artifact>();
