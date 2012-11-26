@@ -18,7 +18,7 @@ public class Lab {
 
         location.addWay(new Way("door to the north", anotherLocation));
         anotherLocation.addWay(new Way("door", location));
-        location.addWay(new Way("loophole", location));
+        location.addWay(new Way("magic mirror", location));
     }
 
     public Adventure makeAdventure() {
