@@ -20,11 +20,15 @@
 
     <target name="test" depends="build">
         <junit fork="yes" haltonfailure="yes">
-            <formatter type="brief" usefile="false"/>
             <classpath refid="classpath"/>
-            <batchtest fork="yes" todir="${output}">
-                <fileset dir="${output}" includes="**/*Test.class"/>
-            </batchtest>
+            <formatter type="plain" usefile="false"/>
+            <test name="adventure.tests.AllTests" todir="${output}"/>
+            <!--
+                <formatter type="brief" usefile="false"/>
+                <batchtest fork="yes" todir="${output}">
+                    <fileset dir="${output}" includes="**/*Test.class"/>
+                </batchtest>
+            -->
         </junit>
     </target>
 
