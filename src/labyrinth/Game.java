@@ -114,4 +114,5 @@ public abstract class Game {
         System.out.println();
     }
 
+    public boolean isOkToFinish() { return true; }
 }
