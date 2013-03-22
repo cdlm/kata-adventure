@@ -5,18 +5,35 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Classe auxiliaire pour le calcul et l'affichage du plan des salles connues du joueur.
+ * <p/>
+ * Utilisation : <code>System.out.println(new Plan(someRoom))</code>
+ */
 public class Plan {
     protected Room initialRoom;
     protected List<Room> mappedRooms;
     protected int minX, maxX, minY, maxY;
 
+    /**
+     * Calcule le plan des salles connues du joueur, centré sur <code>initialRoom</code>.
+     *
+     * @param initialRoom Salle mise en évidence sur le plan (<em>vous êtes ici</em>).
+     */
     public Plan(Room initialRoom) {
         this.initialRoom = initialRoom;
         mappedRooms = new LinkedList<Room>();
         mapRoom(initialRoom, 0, 0);
     }
 
-   protected void mapRoom(Room room, int x, int y) {
+    /**
+     * Découvre la topologie du monde par exploration récursive à partir de la salle {@link room}.
+     * <p/>
+     * Seules les salles déjà visitées par le joueur sont prises en compte. Les coordonnées sont
+     * propagées de proche en proche, donc dépendent de l'étendue des salles connues du joueur et de
+     * la {@link initialRoom salle de départ du calcul}, dont les coordonnées sont toujours (0,0).
+     */
+    protected void mapRoom(Room room, int x, int y) {
         mappedRooms.add(room);
         room.setXY(x, y);
         if (x < minX) minX = x;
@@ -31,6 +48,15 @@ public class Plan {
         }
     }
 
+    /**
+     * Génère le plan des salles connues du joueur.
+     * <p/>
+     * Chaque salle est représentée par un caractère unique entre parenthèses, ou entre crochets
+     * pour la salle de départ du plan, où se trouve le joueur.
+     *
+     * @return Représentation ascii-art du plan.
+     * @see labyrinth.Room#characterDescription()
+     */
     public String toString() {
         Room[][] grid = new Room[maxX][maxY];
         Collections.sort(mappedRooms, new Comparator<Room>() {
@@ -55,7 +81,9 @@ public class Plan {
                 result.append("   ");
                 x++;
             }
-            result.append(r == initialRoom ? "[i]" : "[ ]");
+            result.append(r == initialRoom ? "[" : "(");
+            result.append(r.characterDescription());
+            result.append(r == initialRoom ? "]" : ")");
             x++;
         }
         return result.toString();

@@ -7,18 +7,17 @@ import labyrinth.Room;
 public class CampusGame extends Game {
 
     public static void main(String[] args) {
-        new CampusGame().play(); // {{{ task }}}
+        new CampusGame().play();
     }
 
-    protected void createRooms() {
-        // {{{ task
-        Room outside, hall, theatre, pub, lab, office;
+    protected Room createRooms() {
+        Room outside, hall, amphi, cafet, lab, office;
 
         // création des pièces
         outside = new Room("à l'extérieur de l'entrée principale de l'Université");
         hall = new Room("dans le hall");
-        theatre = new Room("dans un amphithéâtre");
-        pub = new Room("à la cafétéria");
+        amphi = new Room("dans un amphithéâtre");
+        cafet = new Room("à la cafétéria");
         lab = new Room("dans la salle informatique");
         office = new Room("au bureau des techniciens");
 
@@ -26,20 +25,19 @@ public class CampusGame extends Game {
         outside.setExit(Direction.SOUTH, hall);
 
         hall.setExit(Direction.NORTH, outside);
-        hall.setExit(Direction.EAST, theatre);
+        hall.setExit(Direction.EAST, amphi);
         hall.setExit(Direction.SOUTH, lab);
-        hall.setExit(Direction.WEST, pub);
+        hall.setExit(Direction.WEST, cafet);
 
-        theatre.setExit(Direction.WEST, hall);
+        amphi.setExit(Direction.WEST, hall);
 
-        pub.setExit(Direction.EAST, hall);
+        cafet.setExit(Direction.EAST, hall);
 
         lab.setExit(Direction.NORTH, hall);
         lab.setExit(Direction.EAST, office);
 
         office.setExit(Direction.WEST, lab);
 
-        currentRoom = outside;
-        // }}}
+        return outside;
     }
 }

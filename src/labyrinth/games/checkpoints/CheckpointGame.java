@@ -6,9 +6,9 @@ import labyrinth.games.campus.CampusGame;
 
 public class CheckpointGame extends CampusGame {
 
-    public static void main(String[] args) {
-        new CheckpointGame().play(); // {{{ task }}}
-    }
+    public static void main(String[] args) { // {{{ task
+        new CheckpointGame().play();
+    } // }}}
 
     protected int checkpointsToVisit;
 
@@ -18,9 +18,9 @@ public class CheckpointGame extends CampusGame {
     }
 
     @Override
-    protected void createRooms() {
+    protected Room createRooms() {
         // {{{ task
-        Room outside, hall, theatre, pub, lab, office;
+        Room outside, hall, amphi, cafet, lab, office;
 
         // création des pièces
         outside = new Exit("à l'extérieur de l'entrée principale de l'Université",
@@ -28,9 +28,9 @@ public class CheckpointGame extends CampusGame {
                 "C'était quoi l'emploi du temps déjà ?");
         hall = new Checkpoint("dans le hall",
                 "Vous vérifiez le programme de la journée: un cours et deux TP.");
-        theatre = new Checkpoint("dans un amphithéâtre",
+        amphi = new Checkpoint("dans un amphithéâtre",
                 "Juste à l'heure pour votre cours!");
-        pub = new Room("à la cafétéria");
+        cafet = new Room("à la cafétéria");
         lab = new Checkpoint("dans la salle informatique",
                 "Votre projet avance.", 2);
         office = new Checkpoint("au bureau des techniciens",
@@ -40,30 +40,34 @@ public class CheckpointGame extends CampusGame {
         outside.setExit(Direction.SOUTH, hall);
 
         hall.setExit(Direction.NORTH, outside);
-        hall.setExit(Direction.EAST, theatre);
+        hall.setExit(Direction.EAST, amphi);
         hall.setExit(Direction.SOUTH, lab);
-        hall.setExit(Direction.WEST, pub);
+        hall.setExit(Direction.WEST, cafet);
 
-        theatre.setExit(Direction.WEST, hall);
+        amphi.setExit(Direction.WEST, hall);
 
-        pub.setExit(Direction.EAST, hall);
+        cafet.setExit(Direction.EAST, hall);
 
         lab.setExit(Direction.NORTH, hall);
         lab.setExit(Direction.EAST, office);
 
         office.setExit(Direction.WEST, lab);
 
-        currentRoom = outside;
+        return outside;
         // }}}
     }
 
     public void visitCheckpoint() {
+        // {{{ task
         if (checkpointsToVisit > 0) {
             System.out.println("Une bonne chose de faite aujourd'hui.");
             checkpointsToVisit--;
         }
+        // }}}
     }
 
     @Override
-    public boolean isOkToFinish() { return checkpointsToVisit == 0; }
+    public boolean isOkToFinish() {
+        return checkpointsToVisit == 0; // {{{ task }}}
+    }
 }
