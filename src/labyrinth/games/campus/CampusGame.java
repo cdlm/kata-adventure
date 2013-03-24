@@ -4,6 +4,9 @@ import labyrinth.Direction;
 import labyrinth.Game;
 import labyrinth.Room;
 
+/**
+ * Un exemple de jeu, avec un univers familier.
+ */
 public class CampusGame extends Game {
 
     public static void main(String[] args) {
