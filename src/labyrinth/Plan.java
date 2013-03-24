@@ -27,11 +27,11 @@ public class Plan {
     }
 
     /**
-     * Découvre la topologie du monde par exploration récursive à partir de la salle {@link room}.
+     * Découvre la topologie du monde par exploration récursive à partir de la salle <code>room</code>.
      * <p/>
      * Seules les salles déjà visitées par le joueur sont prises en compte. Les coordonnées sont
      * propagées de proche en proche, donc dépendent de l'étendue des salles connues du joueur et de
-     * la {@link initialRoom salle de départ du calcul}, dont les coordonnées sont toujours (0,0).
+     * la {@link Plan#initialRoom salle de départ du calcul}, dont les coordonnées sont toujours (0,0).
      */
     protected void mapRoom(Room room, int x, int y) {
         mappedRooms.add(room);
