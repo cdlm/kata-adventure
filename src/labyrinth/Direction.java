@@ -40,9 +40,12 @@ public enum Direction {
     }
 
     /**
-     * Recherche par nom français d'une des quatre instances.
+     * Recherche l'instance de <code>Direction</code> correspondant à l'indication en toutes lettres
+     * saisie par le joueur, parmi les quatre constantes de la classe.
      *
-     * @return La direction s'appelant <code>name</code>, ou <code>null</code>.
+     * @param name Le nom de la direction recherchée.
+     * @return La direction cardinale correspondante, ou <code>null</code> si le nom fourni est
+     *         incorrect.
      */
     public static Direction named(String name) {
         for (Direction d : values()) {
