@@ -5,18 +5,53 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * Saisie et représentation des commandes du joueur.
+ * <p/>
+ * Les commandes sont composées d'un verbe et d'un argument optionnel.
+ */
 public class Command {
-    protected static String[] validCommands = new String[]{"aller", "plan", "quitter", "aide"};
+    protected static String[] validVerbs = new String[]{"aller", "plan", "quitter", "aide"};
 
+    protected String verb, argument;
+
+    public Command(String verb, String argument) {
+        this.verb = verb;
+        this.argument = argument;
+    }
+
+    /**
+     * @return <code>true</code> si cette commande n'est pas correctement formulée.
+     */
+    public boolean isUnknown() {
+        return verb == null || !isValidVerb(verb);
+    }
+
+    public String getVerb() { return verb; }
+
+    public String getArgument() { return argument; }
+
+    public boolean hasArgument() { return argument != null; }
+
+    public String toString() {
+        return "Command(" + verb + "," + argument + ")";
+    }
+
+    /**
+     * Affiche l'ensemble des commandes disponibles.
+     */
     public static void printAll() {
-        for (String s : validCommands) {
+        for (String s : validVerbs) {
             System.out.print(" " + s);
         }
         System.out.println();
     }
 
+    /**
+     * @return <code>true</code> si <code>verb</code> fait partie des commandes disponibles.
+     */
     public static boolean isValidVerb(String verb) {
-        for (String str : validCommands) {
+        for (String str : validVerbs) {
             if (verb.equals(str)) {
                 return true;
             }
@@ -24,6 +59,11 @@ public class Command {
         return false;
     }
 
+    /**
+     * Saisie d'une commande.
+     *
+     * @return une instance représentant la commande saisie par le joueur, avec son argument.
+     */
     protected static Command readCommand() {
         System.out.print("> "); // affiche l'invite
 
@@ -46,28 +86,8 @@ public class Command {
         if (tokenizer.hasMoreTokens()) {
             argument = tokenizer.nextToken();
         }
-        // on ignore le reste de la ligne entr�e
+        // on ignore le reste de la ligne saisie
 
         return new Command(verb, argument);
-    }
-
-
-    protected String verb, argument;
-
-    public Command(String verb, String argument) {
-        this.verb = verb;
-        this.argument = argument;
-    }
-
-    public boolean isUnknown() {
-        return verb == null || !isValidVerb(verb);
-    }
-
-    public String getVerb() { return verb; }
-    public String getArgument() { return argument; }
-    public boolean hasArgument() { return argument != null; }
-
-    public String toString() {
-        return "Command(" + verb + "," + argument + ")";
     }
 }

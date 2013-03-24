@@ -69,9 +69,9 @@ public class Room {
     }
 
     /**
-     * Affiche la description de la salle, et marque la salle comme connue du joueur.
+     * Réaction du jeu à l'arrivée du joueur dans une salle.
      * <p/>
-     * Peut être redéfinie pour changer le comportement du jeu à l'arrivée du joueur.
+     * Affiche la description de la salle, et marque la salle comme connue du joueur.
      *
      * @param game
      * @return <code>true</code> si entrer dans cette salle met fin au jeu.
