@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="protected" author="false" classpath="lib/junit-3.8.2.jar" destdir="doc" doctitle="Labyrinth" nodeprecated="true" nodeprecatedlist="true" noindex="false" nonavbar="false" notree="false" packagenames="labyrinth.games.checkpoints,labyrinth.games.campus,labyrinth.test,labyrinth.games.dungeon,labyrinth" source="1.6" sourcepath="src" splitindex="false" stylesheetfile="/Users/damien/Documents/Teaching/A43 Java Objet/kata-labyrinth/code/doc/javadoc.css" use="true" version="false"/>
+    </target>
+</project>

@@ -164,12 +164,11 @@ public abstract class Game {
         System.out.println("Merci d'avoir joué, au revoir !");
     }
 
-
     /**
      * @return <code>true</code> si l'état courant du jeu autorise une fin automatique (hors
      *         commande <code>quitter</code>).
      */
     public boolean isOkToFinish() { return true; }
 
-    public abstract void affectHealth(int difficulty);
+    public abstract void affectHealth(int difficulty); // {{{ specific to dungeon }}}
 }
