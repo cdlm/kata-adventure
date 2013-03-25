@@ -55,7 +55,7 @@ public abstract class Game {
             finished = processCommand(command);
         }
 
-        System.out.println("Merci d'avoir joué, au revoir !");
+        this.printGoodbye();
     }
 
     /**
@@ -157,8 +157,19 @@ public abstract class Game {
     }
 
     /**
+     * Message de fin du jeu.
+     */
+    protected void printGoodbye() {
+        System.out.println();
+        System.out.println("Merci d'avoir joué, au revoir !");
+    }
+
+
+    /**
      * @return <code>true</code> si l'état courant du jeu autorise une fin automatique (hors
      *         commande <code>quitter</code>).
      */
     public boolean isOkToFinish() { return true; }
+
+    public abstract void affectHealth(int difficulty);
 }

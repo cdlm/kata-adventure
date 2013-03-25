@@ -43,4 +43,7 @@ public class CampusGame extends Game {
 
         return outside;
     }
+
+    @Override  // {{{ dungeon stuff
+    public void affectHealth(int difficulty) { } // }}}
 }
