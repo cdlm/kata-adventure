@@ -25,20 +25,20 @@ public class DungeonGame extends Game {
     public Room createRooms() {
         Room fond, tunnel, alcove, cave, crypte, colonne, escalier, sortie;
 
-        fond = new Room("au fond d'un puits... tombé dedans ? votre mémoire vous fait défaut..");
-        tunnel = new ObstacleRoom("un tunnel humide et trop bas pour se tenir debout", 1);
+        fond = new Room("au fond d'un puits... tombé dedans ? votre mémoire vous fait défaut...");
+        tunnel = new ObstacleRoom("un tunnel humide et trop bas pour se tenir debout.", 1);
         alcove = new ObstacleRoom("une sorte d'alcôve derrière un effondrement ;" +
-                " les locataires de l'endroit n'apprécient pas votre présence", 2);
-        cave = new BonusRoom("une petite cave voûtée, avec une flaque au milieu",
+                " les locataires de l'endroit n'apprécient pas votre présence.", 2);
+        cave = new BonusRoom("une petite cave voûtée, avec une flaque au milieu.",
                 "Vous y trouvez une bouteille de gnôle qui vous redonne quelques forces.", 2);
         crypte = new Room("une crypte, peut-être un réservoir souterrain ;" +
-                " une barque flotte entre les rangées de colonnes");
+                " une barque flotte entre les rangées de colonnes.");
         colonne = new Room("la barque, à côté d'une colonne effondrée au milieu de l'eau ;" +
-                " c'est une clé qui a attiré votre regard");
+                " c'est une clé qui a attiré votre regard.");
         escalier = new Room("un escalier en spirale émergé de l'eau" +
-                " et s'élevant à travers le plafond");
+                " et s'élevant à travers le plafond.");
         sortie = new ExitRoom("un caveau, probablement ;" +
-                " une grille laisse passer un courant d'air frais",
+                " une grille laisse passer un courant d'air frais.",
                 "La serrure grince, mais elle finit par s'ouvrir." +
                         " Vous êtes libre, mais toujours amnésique.",
                 colonne);

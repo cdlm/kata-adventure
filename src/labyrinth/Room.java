@@ -26,19 +26,22 @@ public class Room {
      * @return Une phrase en français correct, suivi de la liste des sorties disponibles.
      */
     public String fullDescription() {
-        return "Vous êtes " + this.description + ". (sorties :" + this.exitDirections() + ")";
+        return "Vous êtes " + this.description + "\n" +
+                "(directions possibles : " + this.exitDirections() + ")";
     }
 
     /**
      * Noms des directions que le joueur peut emprunter depuis cette salle.
      *
-     * @return Les noms en français des directions possibles, séparées par un espace.
+     * @return Les noms en français des directions possibles, séparées par des virgules.
      */
     public String exitDirections() {
         String result = "";
         for (Direction d : Direction.values()) {
             if (exits[d.index] != null) {
-                result += " " + d.name;
+                String separator = result.isEmpty() ? "" : ", ";
+                result += separator;
+                result += d.name;
             }
         }
         return result;

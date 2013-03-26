@@ -58,9 +58,7 @@ public class Plan {
      * @see labyrinth.Room#characterDescription()
      */
     public String toString() {
-        Room[][] grid = new Room[maxX][maxY];
         Collections.sort(mappedRooms, new Comparator<Room>() {
-            @Override
             public int compare(Room a, Room b) {
                 if (a.getY() < b.getY()) return -1;
                 if (a.getY() > b.getY()) return 1;
