@@ -1,10 +1,13 @@
 package labyrinth.test;
 
-import junit.framework.TestCase;
 import labyrinth.Direction;
+import org.junit.Test;
 
-public class DirectionTest extends TestCase {
+import static org.junit.Assert.assertSame;
 
+public class DirectionTest {
+
+    @Test
     public void testNamed() {
         assertSame(Direction.NORTH, Direction.named("nord"));
         assertSame(Direction.SOUTH, Direction.named("sud"));
