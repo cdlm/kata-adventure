@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Classe auxiliaire pour le calcul et l'affichage du plan des salles connues du joueur.
- * <p/>
+ *
  * Utilisation : <code>System.out.println(new Plan(someRoom))</code>
  */
 public class Plan {
@@ -28,7 +28,7 @@ public class Plan {
 
     /**
      * Découvre la topologie du monde par exploration récursive à partir de la salle <code>room</code>.
-     * <p/>
+     *
      * Seules les salles déjà visitées par le joueur sont prises en compte. Les coordonnées sont
      * propagées de proche en proche, donc dépendent de l'étendue des salles connues du joueur et de
      * la {@link Plan#initialRoom salle de départ du calcul}, dont les coordonnées sont toujours (0,0).
@@ -50,7 +50,7 @@ public class Plan {
 
     /**
      * Génère le plan des salles connues du joueur.
-     * <p/>
+     *
      * Chaque salle est représentée par un caractère unique entre parenthèses, ou entre crochets
      * pour la salle de départ du plan, où se trouve le joueur.
      *

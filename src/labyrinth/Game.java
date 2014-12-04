@@ -12,7 +12,7 @@ public abstract class Game {
 
     /**
      * Construction des salles et des liens d'adjacence entre elles dans le monde.
-     * <p/>
+     *
      * La salle  retournée par cette méthode deviendra le point de départ du jeu. Toutes les autres
      * salles doivent être connexes, directement ou non, à cette salle de départ. Pour le bon
      * fonctionnement du plan, la topologie doit s'aligner une grille plane, sans chevauchement.
@@ -29,7 +29,7 @@ public abstract class Game {
 
     /**
      * Déplacement du joueur.
-     * <p/>
+     *
      * L'entrée dans une salle peut conclure le jeu (en cas de victoire, par exemple); cette
      * décision est déléguée à la salle de destination.
      *
@@ -86,7 +86,7 @@ public abstract class Game {
 
     /**
      * Commande <code>aller</code>: déplacement du joueur.
-     * <p/>
+     *
      * Vérifie la présence en argument du nom d'une des {@link Direction directions cardinales}, et
      * d'une salle adjacente.
      *

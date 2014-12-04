@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * Saisie et représentation des commandes du joueur.
- * <p/>
+ *
  * Les commandes sont composées d'un verbe et d'un argument optionnel.
  */
 public class Command {

@@ -2,7 +2,7 @@ package labyrinth;
 
 /**
  * Une salle dans le monde virtuel du jeu.
- * <p/>
+ *
  * Malgré le nom de la classe, il peut s'agir d'un lieu quelconque, en intérieur ou extérieur; pour
  * le joueur, seule la description importe.
  */
@@ -49,7 +49,7 @@ public class Room {
 
     /**
      * Connecte une salle adjacente dans la direction donnée.
-     * <p/>
+     *
      * Le passage ainsi établi est à sens unique, donc il ne faut pas oublier d'établir le passage
      * retour. Contrainte: la commande <tt>plan</tt> suppose que les salles occupent les cases d'une
      * grille orthogonale plane, deux salles adjacentes occupant des cases adjacentes de la grille.
@@ -73,7 +73,7 @@ public class Room {
 
     /**
      * Réaction du jeu à l'arrivée du joueur dans une salle.
-     * <p/>
+     *
      * Affiche la description de la salle, et marque la salle comme connue du joueur.
      *
      * @param game
