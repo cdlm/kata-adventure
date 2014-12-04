@@ -56,15 +56,15 @@ public class Room {
      * Techniquement il est possible de former des connexion arbitraires (ponts, raccourcis,
      * connexions non orthogonales) mais l'affichage du plan sera incorrect.
      *
-     * @param direction
-     * @param adjacent
+     * @param direction Direction vers laquelle connecter la salle.
+     * @param adjacent La salle à connecter
      */
     public void setExit(Direction direction, Room adjacent) {
         exits[direction.index] = adjacent;
     }
 
     /**
-     * @param direction
+     * @param direction Direction de déplacement souhaitée.
      * @return La salle adjacente dans la direction donnée, ou <code>null</code> s'il n'y en a pas.
      */
     public Room getExit(Direction direction) {
@@ -76,7 +76,7 @@ public class Room {
      *
      * Affiche la description de la salle, et marque la salle comme connue du joueur.
      *
-     * @param game
+     * @param game Le jeu en cours de déroulement.
      * @return <code>true</code> si entrer dans cette salle met fin au jeu.
      */
     public boolean enter(Game game) {
@@ -106,6 +106,8 @@ public class Room {
     /**
      * Établit les coordonnées de la salle dans le plan.
      *
+     * @param x Longitude de la salle.
+     * @param y Latitude de la salle.
      * @see Plan
      */
     public void setXY(int x, int y) {
@@ -114,12 +116,12 @@ public class Room {
     }
 
     /**
-     * Longitude de la salle dans le plan.
+     * @return Longitude de la salle dans le plan.
      */
     public int getX() { return coordX; }
 
     /**
-     * Latitude de la salle dans le plan.
+     * @return Latitude de la salle dans le plan.
      */
     public int getY() { return coordY; }
 }

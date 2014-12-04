@@ -48,6 +48,7 @@ public class Command {
     }
 
     /**
+     * @param verb Un verbe d'action saisi par le joueur.
      * @return <code>true</code> si <code>verb</code> fait partie des commandes disponibles.
      */
     public static boolean isValidVerb(String verb) {

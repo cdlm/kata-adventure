@@ -90,6 +90,7 @@ public abstract class Game {
      * Vérifie la présence en argument du nom d'une des {@link Direction directions cardinales}, et
      * d'une salle adjacente.
      *
+     * @param command La commande <code>aller</code> à exécuter.
      * @return <code>true</code> si le déplacement a provoqué la fin du jeu.
      */
     protected boolean processGo(Command command) {
@@ -114,6 +115,7 @@ public abstract class Game {
     /**
      * Commande <code>quitter</code>: sortie volontaire du jeu.
      *
+     * @param command La commande <code>quitter</code> à exécuter.
      * @return <code>true</code> si la commande est valide.
      */
     protected boolean processQuit(Command command) {
@@ -128,11 +130,15 @@ public abstract class Game {
 
     /**
      * Commande <code>plan</code>.
+     *
+     * @param command La commande <code>plan</code> à exécuter.
      */
     private void printMap(Command command) { System.out.println(new Plan(currentRoom)); }
 
     /**
      * Commande <code>aide</code>: rappel des commandes disponibles.
+     *
+     * @param command La commande <code>aide</code> à exécuter.
      */
     private void printHelp(Command command) {
         System.out.println("Vous êtes perdu. Vous êtes seul.");

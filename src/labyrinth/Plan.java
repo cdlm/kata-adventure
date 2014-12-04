@@ -32,6 +32,10 @@ public class Plan {
      * Seules les salles déjà visitées par le joueur sont prises en compte. Les coordonnées sont
      * propagées de proche en proche, donc dépendent de l'étendue des salles connues du joueur et de
      * la {@link Plan#initialRoom salle de départ du calcul}, dont les coordonnées sont toujours (0,0).
+     *
+     * @param room Salle de départ de l'algorithme.
+     * @param x Abscisse de la salle de départ.
+     * @param y Ordonnée de la salle de départ.
      */
     protected void mapRoom(Room room, int x, int y) {
         mappedRooms.add(room);
